@@ -1,0 +1,14 @@
+/*reset*/
+body, h1, h2, h3, h4, h5, h6, dl, dt, dd, ul, ol, li, th, td, p, blockquote, pre, form, fieldset, legend, input, button, textarea, hr { margin:0; padding:0; }
+li { list-style:none; }
+fieldset, img { border:0; }
+em { font-style:normal; }
+button, input, select, textarea { font-size:100%; }
+legend { color:#000; }
+hr { border:none; height:1px; }
+body, button, input, select, textarea { font:12px/1.125 Tahoma, Helvetica, "微软雅黑", san-serif; }
+.clearfix:after { content:"."; display:block; height:0; clear:both; visibility:hidden; }
+.clearfix { display:inline-block; }
+* html .clearfix { height:1%; }
+.clearfix { display:block; }
+.clear { clear:both; height:0; font:0/0 Arial; visibility:hidden; }
