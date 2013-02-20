@@ -12,3 +12,11 @@ body, button, input, select, textarea { font:12px/1.125 Tahoma, Helvetica, "х╛ош
 * html .clearfix { height:1%; }
 .clearfix { display:block; }
 .clear { clear:both; height:0; font:0/0 Arial; visibility:hidden; }
+
+
+
+/*main*/
+body{
+	overflow: hidden;
+	background:url(../images/bg.jpg) repeat;
+}
