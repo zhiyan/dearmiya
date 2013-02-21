@@ -26,6 +26,20 @@ var miya = {
 		});
 		// sky
 		$( '.sky-list ul' ).baraja();
+
+		// about
+		var $container = $( '#uc-container' ),
+			pfold = $( '#uc-container' ).pfold({
+						easing : 'ease-in-out',
+						folds : 3,
+						folddirection : ['left','bottom','right']
+					});
+			$container.on( 'click', function() {
+					pfold.unfold();
+				} );
+			$container.find( 'span.close' ).on( 'click', function() {
+					pfold.fold();
+				} );
 	}
 }
 
