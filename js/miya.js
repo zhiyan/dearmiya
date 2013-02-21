@@ -3,16 +3,54 @@ var $body = $("body"),
 
 var miya = {
 	init:function(){
-		this.renderPath();
+		this.initPath();
+		this.initBasic();
 	},
 	// render
-	renderPath:function(){
+	initPath:function(){
 		$.fn.scrollPath("getPath", {scrollSpeed: 50,rotationSpeed: Math.PI / 15})
-			.moveTo(400, 50, {name: "start"})
-			.lineTo(400, 800, {name: "description"});
+			.moveTo(0, 2000, {name: "home",callback:$.proxy(this.renderHome,this)})
+			.arc(2000, 2000, 2000, -Math.PI, Math.PI/2, true,{name:"sky",callback:$.proxy(this.renderSky,this)})
+			.arc(2000, 2000, 2000, Math.PI/2, 0, true,{name:"say",callback:$.proxy(this.renderSay,this)})
+			.arc(2000, 2000, 2000, 0, -Math.PI/2, true,{name:"about",callback:$.proxy(this.renderAbout,this)})
+			.arc(2000,2000,2000,-Math.PI/2,-Math.PI,true);
 		$(".wrapper").scrollPath({scrollBar:true,drawPath: true, wrapAround: true});
+	},
+	initBasic:function(){
+		// nav
+		$("nav a").click(function(){
+			var $this = $(this),
+				target = $this.attr("rel");
+			$.fn.scrollPath("scrollTo", target, 1000, "easeInOutSine");
+			return false;
+		});
+		// sky
+		$( '.sky-list ul' ).baraja();
 	}
 }
+
+// func
+$.extend(miya,{
+	updateNav:function( rel ){
+		$("nav a").removeClass("cur").filter("[rel='"+rel+"']").addClass("cur");
+	}
+});
+
+// callbacks
+$.extend(miya,{
+	renderHome:function(){
+		this.updateNav('home');
+	},
+	renderSky:function(){
+		this.updateNav('sky');
+	},
+	renderSay:function(){
+		this.updateNav('say');
+	},
+	renderAbout:function(){
+		this.updateNav('about');
+	}
+})
 
 $(function(){
 	miya.init();
