@@ -57,6 +57,24 @@ nav a{
 nav a:hover,nav a.cur{
 	background:orange;
 }
+nav li{
+	position: relative;
+}
+nav span{
+	display:none;
+	position: absolute;
+	width: 100px;
+	line-height: 20px;
+	text-align: right;
+	right:60px;
+	top:0;
+	font-family: "miya";
+	font-size:16px;
+}
+nav li:hover span{
+	display: inline-block;
+
+}
 
 /*home*/
 .logo{
