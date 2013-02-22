@@ -10,10 +10,10 @@ var miya = {
 	initPath:function(){
 		$.fn.scrollPath("getPath", {scrollSpeed: 50,rotationSpeed: Math.PI / 15})
 			.moveTo(0, 2000, {name: "home",callback:$.proxy(this.renderHome,this)})
-			.arc(2000, 2000, 2000, -Math.PI, Math.PI/2, true,{name:"sky",callback:$.proxy(this.renderSky,this)})
-			.arc(2000, 2000, 2000, Math.PI/2, 0, true,{name:"say",callback:$.proxy(this.renderSay,this)})
-			.arc(2000, 2000, 2000, 0, -Math.PI/2, true,{name:"about",callback:$.proxy(this.renderAbout,this)})
-			.arc(2000,2000,2000,-Math.PI/2,-Math.PI,true);
+			.arc(2000, 2000, 2000, -Math.PI, Math.PI/2, true,{rotate: Math.PI/2,name:"sky",callback:$.proxy(this.renderSky,this)})
+			.arc(2000, 2000, 2000, Math.PI/2, 0, true,{rotate: Math.PI,name:"say",callback:$.proxy(this.renderSay,this)})
+			.arc(2000, 2000, 2000, 0, -Math.PI/2, true,{rotate: 3*Math.PI/2,name:"about",callback:$.proxy(this.renderAbout,this)})
+			.arc(2000,2000,2000,-Math.PI/2,-Math.PI,true,{rotate: 2*Math.PI});
 		$(".wrapper").scrollPath({scrollBar:true,drawPath: true, wrapAround: true});
 	},
 	initBasic:function(){
