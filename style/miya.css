@@ -127,6 +127,10 @@ nav li:hover span{
 	left:3500px;
 	top:2000px;
 }
+.say-wrap{
+	left:-400px;
+	top:1900px;
+}
 
 /*about*/
 .about-logo{
@@ -434,4 +438,202 @@ ul.baraja-container li {
 
 .uc-container.uc-current {
 	z-index: 9999;
+}
+
+/**plugin:book**/
+/* Content Flip Style */
+.bb-bookblock {
+	width: 400px;
+	height: 300px;
+	position: relative;
+	background: #fff;
+	z-index: 100;
+}
+
+.bb-page {
+	width: 50%;
+	height: 100%;
+	left: 50%;
+	position: absolute;
+
+	-webkit-transform-style: preserve-3d;
+	-moz-transform-style: preserve-3d;
+	-o-transform-style: preserve-3d;
+	-ms-transform-style: preserve-3d;
+	transform-style: preserve-3d;
+
+	-webkit-transform-origin: left center;
+	-moz-transform-origin: left center;
+	-o-transform-origin: left center;
+	-ms-transform-origin: left center;
+	transform-origin: left center;
+}
+
+.bb-page > div,
+.bb-outer,
+.bb-content {
+	position: absolute;
+	height: 100%;
+	top: 0;
+	left: 0;
+}
+
+.bb-content {
+	background: #fff;
+}
+
+.bb-inner {
+	position: relative;
+	width: 100%;
+	height: 100%;
+}
+
+.bb-overlay, .bb-outer {
+	-webkit-backface-visibility: hidden;
+	-moz-backface-visibility: hidden;
+	-o-backface-visibility: hidden;
+	-ms-backface-visibility: hidden;
+	backface-visibility: hidden;
+}
+
+.bb-page > div {
+	width: 100%;
+	-webkit-transform-style: preserve-3d;
+	-moz-transform-style: preserve-3d;
+	-o-transform-style: preserve-3d;
+	-ms-transform-style: preserve-3d;
+	transform-style: preserve-3d;
+
+	-webkit-backface-visibility: hidden;
+	-moz-backface-visibility: hidden;
+	-o-backface-visibility: hidden;
+	-ms-backface-visibility: hidden;
+	backface-visibility: hidden;
+}
+
+.bb-back {
+	-webkit-transform: rotateY(-180deg);
+	-moz-transform: rotateY(-180deg);
+	-o-transform: rotateY(-180deg);
+	-ms-transform: rotateY(-180deg);
+	transform: rotateY(-180deg);
+}
+
+.bb-outer {
+	width: 100%;
+	overflow: hidden;
+	z-index: 999;
+}
+
+.bb-overlay, 
+.bb-flipoverlay {
+	background-color: rgba(0, 0, 0, 0.7);
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	width: 100%;
+	height: 100%;
+	opacity: 0;
+}
+
+.bb-flipoverlay {
+	background-color: rgba(0, 0, 0, 0.2);
+}
+
+.bb-bookblock > div.bb-page:first-child,
+.bb-bookblock > div.bb-page:first-child .bb-back {
+	-webkit-transform: rotateY(180deg);
+	-moz-transform: rotateY(180deg);
+	-o-transform: rotateY(180deg);
+	-ms-transform: rotateY(180deg);
+	transform: rotateY(180deg);
+}
+
+.bb-item {
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	top: 0;
+	left: 0;
+	display: none;
+	background: #fff;
+}
+.say-wrap {
+	background: #fff;
+	width: 400px;
+	height: 340px;
+	position: relative;
+	margin: 40px auto;
+	box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.1);
+	border-radius: 0 0 5px 5px;
+}
+
+.say-wrap:before, 
+.say-wrap:after {
+	content: '';
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	background: #fff;
+	left: 0;
+	box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.1);
+	border-radius: 0 0 5px 5px;
+}
+
+.say-wrap:before {
+	top: 6px;
+	z-index: -2;
+	box-shadow: 0px 7px 10px rgba(0, 0, 0, 0.3);
+}
+
+.say-wrap:after {
+	top: 3px;
+	z-index: -1;
+}
+
+.bb-bookblock {
+	box-shadow: 0px 5px 0 rgba(0, 0, 0, 0.1);
+}
+
+.say-wrap h3 {
+	color: #aaa;
+	font-size: 12px;
+	line-height: 16px;
+	position: absolute;
+	left: 10px;
+	bottom: -3px;
+}
+
+.say-wrap .ctl {
+	width: 120px;
+	margin: 8px 10px 0 0;
+	float: right;
+	position: relative;
+	z-index: 0;
+}
+
+.say-wrap .ctl a {
+	float: left;
+	width: 30px;
+	height: 30px;
+	background: url(../images/nav_small.png) center right;
+	text-indent: -90000px;
+	opacity: 0.8;
+}
+
+.say-wrap .ctl a:hover {
+	opacity: 1;
+}
+
+.say-wrap .ctl a#bb-nav-prev {
+	background-position: center left;
+	margin-right: 5px;
+}
+.say-wrap .ctl a#bb-nav-next {
+	background-position: -43px 50%;
+}
+
+.say-wrap .ctl a#bb-nav-jump {
+	background-position: center right;
+	float: right;
 }
