@@ -1,5 +1,8 @@
 var $body = $("body"),
-	$win = $(window);
+	$win = $(window),
+	skyCount = 15,
+	skyUrl = 'upload/',
+	skyMoving = false;
 
 var miya = {
 	init:function(){
@@ -93,11 +96,44 @@ var miya = {
 		Page.init();
 	},
 	initSky:function(){
-		var html = '';
-		for(var i=0;i<=20;i++){
-			html += '<li><div class="pic"><img src="upload/'+sky[i].id+'.jpg"/></div><h4>'+sky[i].location+'</h4> <p>'+sky[i].date+'</p> </li>';
-		}
-		$( '.sky-list ul' ).html(html).baraja();
+		var html = this.getSkyList(),
+			current,
+			that = this;
+		var skyObj = $( '.sky-list ul' ).html(html).baraja();
+		// circle
+		$("#sky .circle").click(function(){
+			skyObj.fan( {
+						speed : 500,
+						easing : 'ease-out',
+						range : 330,
+						direction : 'left',
+						origin : { x : 50, y : 100 },
+						center : true
+					} );
+		});
+		// next
+		$("#sky .next").click(function(){
+			skyObj.next();
+		});
+		// prev
+		$("#sky .prev").click(function(){
+			skyObj.previous();
+		});
+		// change
+		$("#sky .before,#sky .after").click(function(){
+			var $this = $(this),
+				html = that.getSkyList( $this.hasClass("before") ? 0 : 1 );
+			if( !!skyMoving ) {
+				return false;
+			}
+			skyMoving = true;
+			setTimeout(function(){
+				skyMoving = false;
+			},200*(skyCount+1))
+			$(".sky-list li").remove();
+			skyObj.add( $(html) );
+		});
+
 	}
 }
 
@@ -105,6 +141,20 @@ var miya = {
 $.extend(miya,{
 	updateNav:function( rel ){
 		$("nav a").removeClass("cur").filter("[rel='"+rel+"']").addClass("cur");
+	},
+	getSkyList:function( type ){
+		var html = '';
+		for(var i=0;i<=skyCount - 1;i++){
+			if( type === 1 ){
+				current = sky.pop();
+				sky.unshift(current);
+			}else{
+				current = sky.shift();
+				sky.push(current);
+			}
+			html += '<li><div class="pic"><img src="'+skyUrl+current.id+'.jpg"/></div><h4>'+current.location+'</h4> <p>'+current.date+'</p> </li>';
+		}
+		return html;
 	}
 });
 

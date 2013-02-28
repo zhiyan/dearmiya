@@ -106,6 +106,31 @@ nav li:hover span{
 	left:0;
 	top:20px;
 }
+#sky .sky-func{
+	left:55px;
+	top:55px;
+}
+#sky .sky-func a{
+	display: inline-block;
+	width: 22px;
+	height: 20px;
+	background:url(../images/icon.png) no-repeat;
+}
+#sky .before{
+	background-position:left top  !important;
+}
+#sky .after{
+	background-position:-103px top !important;
+}
+#sky .prev{
+	background-position:-28px top !important;
+}
+#sky .next{
+	background-position:-78px top !important;
+}
+#sky .circle{
+	background-position:-53px top !important;
+}
 .sky-list{
 	left:250px;
 	top:100px;
