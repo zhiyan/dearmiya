@@ -25,7 +25,7 @@ var miya = {
 			return false;
 		});
 		// sky
-		$( '.sky-list ul' ).baraja();
+		this.initSky();
 
 		// say
 		this.initSay();
@@ -89,8 +89,15 @@ var miya = {
 				} );
 			};
 			return { init : init };
-	})();
-	Page.init();
+		})();
+		Page.init();
+	},
+	initSky:function(){
+		var html = '';
+		for(var i=0;i<=20;i++){
+			html += '<li><div class="pic"><img src="upload/'+sky[i].id+'.jpg"/></div><h4>'+sky[i].location+'</h4> <p>'+sky[i].date+'</p> </li>';
+		}
+		$( '.sky-list ul' ).html(html).baraja();
 	}
 }
 

@@ -122,6 +122,10 @@ nav li:hover span{
 	-ms-user-select: none;
 	user-select: none;
 }
+.sky-list .pic{
+	height: 180px;
+	overflow: hidden;
+}
 .sky-list img{
 	width: 200px;
 }
@@ -250,7 +254,7 @@ nav li:hover span{
 /**plugin:baraja**/
 ul.baraja-container {
 	width: 200px;
-	height: 230px;
+	height: 255px;
 	margin: 0 auto 30px;
 	position: relative;
 	padding: 0;
