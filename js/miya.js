@@ -152,7 +152,7 @@ $.extend(miya,{
 				current = sky.shift();
 				sky.push(current);
 			}
-			html += '<li><div class="pic"><img src="'+skyUrl+current.id+'.jpg"/></div><h4>'+current.location+'</h4> <p>'+current.date+'</p> </li>';
+			html += '<li><div class="pic"><img src="'+skyUrl+current.id+'.jpg"/></div><h4>'+current.location+'<a href="'+skyUrl+current.id+'_large.jpg" rel="lightbox[sky]" title="'+current.location+' '+current.date+'" class="opensky"></a></h4> <p>'+current.date+'</p> </li>';
 		}
 		return html;
 	}
