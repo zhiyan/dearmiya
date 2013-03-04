@@ -17,7 +17,7 @@ var miya = {
 			.arc(2000, 2000, 2000, Math.PI/2, 0, true,{rotate: Math.PI,name:"say",callback:$.proxy(this.renderSay,this)})
 			.arc(2000, 2000, 2000, 0, -Math.PI/2, true,{rotate: 3*Math.PI/2,name:"about",callback:$.proxy(this.renderAbout,this)})
 			.arc(2000,2000,2000,-Math.PI/2,-Math.PI,true,{rotate: 2*Math.PI});
-		$(".wrapper").scrollPath({scrollBar:true,drawPath: true, wrapAround: true});
+		$(".wrapper").scrollPath({scrollBar:true,drawPath: false, wrapAround: true});
 	},
 	initBasic:function(){
 		// nav
