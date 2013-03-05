@@ -32,13 +32,15 @@ h1{
 /*nav*/
 nav{
 	position: fixed;
-	right:0;
+	right:-100px;
 	top:50%;
 	border-radius:5px 0 0 5px;
 	background:#fff;
 	padding:10px 10px 0;
 	margin-top: -85px;
 	z-index: 999;
+	background:rgba(255,255,255,.6);
+	box-shadow: -2px 2px 5px #999;
 }
 nav a{
 	text-decoration: none;
@@ -87,6 +89,94 @@ nav li:hover span{
 .logo{
 	left:-80px;
 	top:100px;
+}
+.cloud{
+	left: -200px;
+	top: 2200px;
+}
+
+
+/*about*/
+#about{
+	position: absolute;
+	width: 400px;
+	height: 400px;
+	left:360px;
+	top:3230px;
+	-webkit-transform: rotate(-45deg);
+	-moz-transform: rotate(-45deg);
+	-o-transform: rotate(-45deg);
+	-ms-transform: rotate(-45deg);
+	transform: rotate(-45deg);
+}
+.about-logo{
+	left:0;
+	top:20px;
+}
+.me{
+	left:240px;
+	top:80px;
+}
+.me .scrollwrap {
+    width: 100%;
+    height: 100%;
+    padding: 30px;
+    overflow: hidden;
+    position: absolute;
+    color: #224092;
+    font-family: "Satisfy", cursive;§
+    text-shadow: 0 1px 0 rgba(255,255,255,0.8);
+    box-shadow: inset 0 0 0 1px rgba(255,255,255,0.7);
+    cursor: pointer;
+}
+.me .scrollwrap h3 {
+    font-weight: normal;
+    font-size: 22px;
+    padding: 30px 0 10px 30px;
+    pointer-events: none;
+}
+
+.me .scrollwrap p {
+    font-size: 18px;
+    padding: 0 40px 0 40px;
+    pointer-events: none;
+}
+
+.me .scrollwrap p.signature {
+    font-size: 20px;
+    padding: 10px 30px 0 30px;
+    text-align: right;
+    pointer-events: none;
+}
+.me .close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-family: "Satisfy", cursive;
+    color: #224092;
+    cursor: pointer;
+    font-size: 20px;
+    width: 20px;
+    height: 20px;
+    border: 2px solid #224092;
+    border-radius: 50%;
+    text-align: center;
+    line-height: 14px;
+}
+.me .miya-pic img{
+	width: 160px;
+}
+.me .miya-pic .plus{
+	display:none;
+	width: 33px;
+	height: 30px;
+	background:url(../images/plus.png) no-repeat  left top;
+	position: absolute;
+	left:5px;
+	bottom:0px;
+}
+.me .miya-pic:hover .plus{
+	display: block;
 }
 
 /*sky*/
@@ -176,6 +266,7 @@ nav li:hover span{
 	height: 16px;
 	background:url(../images/zoom.png);
 }
+
 /*say*/
 #say{
 	position: absolute;
@@ -190,7 +281,7 @@ nav li:hover span{
 	transform: rotate(180deg);
 }
 .say-logo{
-	left:20px;
+	left:-85px;
 	top:20px;
 }
 .say-wrap{
@@ -198,8 +289,8 @@ nav li:hover span{
 	top:0px;
 }
 
-/*about*/
-#about{
+/*contact*/
+#contact{
 	position: absolute;
 	width: 400px;
 	height: 400px;
@@ -211,74 +302,30 @@ nav li:hover span{
 	-ms-transform: rotate(90deg);
 	transform: rotate(90deg);
 }
-.about-logo{
+.contact-logo{
 	left:0;
 	top:20px;
 }
-.me{
-	left:240px;
-	top:80px;
+#contact .con{
+	position:absolute;
+	left:65px;
+	top:85px;
+	font-family: "miya";
+	width: 200%;
 }
-.me .scrollwrap {
-    width: 100%;
-    height: 100%;
-    padding: 30px;
-    overflow: hidden;
-    position: absolute;
-    color: #224092;
-    font-family: "Satisfy", cursive;§
-    text-shadow: 0 1px 0 rgba(255,255,255,0.8);
-    box-shadow: inset 0 0 0 1px rgba(255,255,255,0.7);
-    cursor: pointer;
+#contact .con p{
+	line-height: 1.8;
+	font-size:22px;
 }
-.me .scrollwrap h3 {
-    font-weight: normal;
-    font-size: 22px;
-    padding: 30px 0 10px 30px;
-    pointer-events: none;
+#contact .con span{
+	margin-right: 15px;
+	display: inline-block;
+	width: 100px;
+	text-align: right;
 }
-
-.me .scrollwrap p {
-    font-size: 18px;
-    padding: 0 40px 0 40px;
-    pointer-events: none;
-}
-
-.me .scrollwrap p.signature {
-    font-size: 20px;
-    padding: 10px 30px 0 30px;
-    text-align: right;
-    pointer-events: none;
-}
-.me .close {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    font-family: "Satisfy", cursive;
-    color: #224092;
-    cursor: pointer;
-    font-size: 20px;
-    width: 20px;
-    height: 20px;
-    border: 2px solid #224092;
-    border-radius: 50%;
-    text-align: center;
-    line-height: 14px;
-}
-.me .miya-pic img{
-	width: 160px;
-}
-.me .miya-pic .plus{
-	display:none;
-	width: 33px;
-	height: 30px;
-	background:url(../images/plus.png) no-repeat  left top;
-	position: absolute;
-	left:5px;
-	bottom:0px;
-}
-.me .miya-pic:hover .plus{
-	display: block;
+#contact .con a,#contact .con em{
+	color:orange;
+	text-decoration: none;
 }
 
 

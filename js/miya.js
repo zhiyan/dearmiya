@@ -13,9 +13,10 @@ var miya = {
 	initPath:function(){
 		$.fn.scrollPath("getPath", {scrollSpeed: 50,rotationSpeed: Math.PI / 15})
 			.moveTo(0, 2000, {name: "home",callback:$.proxy(this.renderHome,this)})
-			.arc(2000, 2000, 2000, -Math.PI, Math.PI/2, true,{rotate: Math.PI/2,name:"sky",callback:$.proxy(this.renderSky,this)})
+			.arc(2000, 2000, 2000, -Math.PI, 3*Math.PI/4, true,{rotate: Math.PI/4,name:"about",callback:$.proxy(this.renderAbout,this)})
+			.arc(2000, 2000, 2000, 3*Math.PI/4, Math.PI/2, true,{rotate: Math.PI/2,name:"sky",callback:$.proxy(this.renderSky,this)})
 			.arc(2000, 2000, 2000, Math.PI/2, 0, true,{rotate: Math.PI,name:"say",callback:$.proxy(this.renderSay,this)})
-			.arc(2000, 2000, 2000, 0, -Math.PI/2, true,{rotate: 3*Math.PI/2,name:"about",callback:$.proxy(this.renderAbout,this)})
+			.arc(2000, 2000, 2000, 0, -Math.PI/2, true,{rotate: 3*Math.PI/2,name:"contact",callback:$.proxy(this.renderContact,this)})
 			.arc(2000,2000,2000,-Math.PI/2,-Math.PI,true,{rotate: 2*Math.PI});
 		$(".wrapper").scrollPath({scrollBar:true,drawPath: false, wrapAround: true});
 	},
@@ -27,6 +28,7 @@ var miya = {
 			$.fn.scrollPath("scrollTo", target, 1000, "easeInOutSine");
 			return false;
 		});
+		$("nav").delay(1000).animate({"right":0},1500,'easeOutQuart')
 		// sky
 		this.initSky();
 
@@ -46,15 +48,22 @@ var miya = {
 			$container.find( 'span.close' ).on( 'click', function() {
 					pfold.fold();
 				} );
+
+		// cloud
+		// $(".cloud").jqFloat({
+		// 		width:400,
+		// 		height:200,
+		// 		speed:2000
+		// 	});
 	},
 	initSay:function(){
 		// get weibo
 		var url = 'https://api.weibo.com/2/statuses/user_timeline.json?access_token=2.00UBmhPCIgepXD6b22903e3eChAhYD&uid=1987654947&callback=?';
 		$.getJSON(url,function(res){
 			var list = res.data.statuses;
-			console.log(list)
 			$.each(list,function(i,v){
-				$("#say-book").append('<div class="bb-item"><div class="ileft">'+( v.thumbnail_pic ? ('<img class="pic" src="'+v.thumbnail_pic+'">') : '')+' <p class="name">'+v.user.name+'</p> <p class="time">'+v.created_at.split("+")[0]+'</p></div><div class="iright"><p class="content">'+v.text+'</p></div></div>');
+				// $("#say-book").append('<div class="bb-item"><div class="ileft">'+( v.thumbnail_pic ? ('<img class="pic" src="'+v.thumbnail_pic+'">') : '')+' <p class="name">'+v.user.name+'</p> <p class="time">'+v.created_at.split("+")[0]+'</p></div><div class="iright"><p class="content">'+v.text+'</p></div></div>');
+				$("#say-book").append('<div class="bb-item"><div class="ileft"><img class="pic" src="'+(v.thumbnail_pic ? v.thumbnail_pic : 'images/default/'+Math.floor( ( Math.random() * 4 ) + 1 )+'.jpg')+'"><p class="name">'+v.user.name+'</p> <p class="time">'+v.created_at.split("+")[0]+'</p></div><div class="iright"><p class="content">'+v.text+'</p></div></div>');
 			});
 			var Page = (function() {
 			var config = {
@@ -180,6 +189,9 @@ $.extend(miya,{
 	},
 	renderAbout:function(){
 		this.updateNav('about');
+	},
+	renderContact:function(){
+		this.updateNav('contact');
 	}
 })
 
