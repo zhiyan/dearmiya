@@ -546,7 +546,6 @@ ul.baraja-container li {
 	-ms-transform-origin: left center;
 	transform-origin: left center;
 }
-
 .bb-page > div,
 .bb-outer,
 .bb-content {
@@ -635,6 +634,41 @@ ul.baraja-container li {
 	left: 0;
 	display: none;
 	background: #fff;
+}
+.say-wrap .ileft{
+	width:50%;
+	height:100%;
+	float: left;
+}
+.say-wrap .ileft .pic{
+	margin: 20px;
+}
+.say-wrap .ileft p{
+	line-height: 1.2;
+	font-size:14px;
+}
+.say-wrap .ileft p{
+	padding:0 20px;
+}
+.say-wrap .ileft p.time{
+	color:#666;
+}
+.say-wrap .ileft p.name{
+	color:orange;
+}
+.say-wrap .iright{
+	width:50%;
+	height:100%;
+	float: left;
+}
+.say-wrap .iright .content{
+	padding:20px;
+	font-size:16px;
+	color:#666;
+	line-height: 1.8;
+}
+.say-wrap .content{
+	font-size:16px;
 }
 .say-wrap {
 	background: #fff;

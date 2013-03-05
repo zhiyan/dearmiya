@@ -48,52 +48,60 @@ var miya = {
 				} );
 	},
 	initSay:function(){
-		var Page = (function() {
-		var config = {
-				$bookBlock : $( '#say-book' ),
-				$navNext : $( '#bb-nav-next' ),
-				$navPrev : $( '#bb-nav-prev' ),
-				$navJump : $( '#bb-nav-jump' ),
-				bb : $( '#say-book' ).bookblock( {
-					speed : 800,
-					shadowSides : 0.8,
-					shadowFlip : 0.7
-				} )
-			},
-			init = function() {
-				initEvents();
-			},
-			initEvents = function() {
-				var $slides = config.$bookBlock.children(),
-						totalSlides = $slides.length;
-				// add navigation events
-				config.$navNext.on( 'click', function() {
-					config.bb.next();
-					return false;
-				} );
-				config.$navPrev.on( 'click', function() {
-					config.bb.prev();
-					return false;
-				} );
-				config.$navJump.on( 'click', function() {
-					config.bb.jump( totalSlides );
-					return false;
-				} );
-				// add swipe events
-				$slides.on( {
-					'swipeleft'		: function( event ) {
+		// get weibo
+		var url = 'https://api.weibo.com/2/statuses/user_timeline.json?access_token=2.00UBmhPCIgepXD6b22903e3eChAhYD&uid=1987654947&callback=?';
+		$.getJSON(url,function(res){
+			var list = res.data.statuses;
+			$.each(list,function(i,v){
+				$("#say-book").append('<div class="bb-item"><div class="ileft"><img class="pic" src="'+v.thumbnail_pic+'"> <p class="name">'+v.user.name+'</p> <p class="time">'+v.created_at.split("+")[0]+'</p></div><div class="iright"><p class="content">'+v.text+'</p></div></div>');
+			});
+			var Page = (function() {
+			var config = {
+					$bookBlock : $( '#say-book' ),
+					$navNext : $( '#bb-nav-next' ),
+					$navPrev : $( '#bb-nav-prev' ),
+					$navJump : $( '#bb-nav-jump' ),
+					bb : $( '#say-book' ).bookblock( {
+						speed : 800,
+						shadowSides : 0.8,
+						shadowFlip : 0.7
+					} )
+				},
+				init = function() {
+					initEvents();
+				},
+				initEvents = function() {
+					var $slides = config.$bookBlock.children(),
+							totalSlides = $slides.length;
+					// add navigation events
+					config.$navNext.on( 'click', function() {
 						config.bb.next();
 						return false;
-					},
-					'swiperight'	: function( event ) {
+					} );
+					config.$navPrev.on( 'click', function() {
 						config.bb.prev();
 						return false;
-					}
-				} );
-			};
-			return { init : init };
-		})();
-		Page.init();
+					} );
+					config.$navJump.on( 'click', function() {
+						config.bb.jump( totalSlides );
+						return false;
+					} );
+					// add swipe events
+					$slides.on( {
+						'swipeleft'		: function( event ) {
+							config.bb.next();
+							return false;
+						},
+						'swiperight'	: function( event ) {
+							config.bb.prev();
+							return false;
+						}
+					} );
+				};
+				return { init : init };
+			})();
+			Page.init();
+		});
 	},
 	initSky:function(){
 		var html = this.getSkyList(),
