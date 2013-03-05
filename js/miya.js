@@ -52,8 +52,9 @@ var miya = {
 		var url = 'https://api.weibo.com/2/statuses/user_timeline.json?access_token=2.00UBmhPCIgepXD6b22903e3eChAhYD&uid=1987654947&callback=?';
 		$.getJSON(url,function(res){
 			var list = res.data.statuses;
+			console.log(list)
 			$.each(list,function(i,v){
-				$("#say-book").append('<div class="bb-item"><div class="ileft"><img class="pic" src="'+v.thumbnail_pic+'"> <p class="name">'+v.user.name+'</p> <p class="time">'+v.created_at.split("+")[0]+'</p></div><div class="iright"><p class="content">'+v.text+'</p></div></div>');
+				$("#say-book").append('<div class="bb-item"><div class="ileft">'+( v.thumbnail_pic ? ('<img class="pic" src="'+v.thumbnail_pic+'">') : '')+' <p class="name">'+v.user.name+'</p> <p class="time">'+v.created_at.split("+")[0]+'</p></div><div class="iright"><p class="content">'+v.text+'</p></div></div>');
 			});
 			var Page = (function() {
 			var config = {
