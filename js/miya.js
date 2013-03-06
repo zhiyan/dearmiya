@@ -62,7 +62,6 @@ var miya = {
 		$.getJSON(url,function(res){
 			var list = res.data.statuses;
 			$.each(list,function(i,v){
-				// $("#say-book").append('<div class="bb-item"><div class="ileft">'+( v.thumbnail_pic ? ('<img class="pic" src="'+v.thumbnail_pic+'">') : '')+' <p class="name">'+v.user.name+'</p> <p class="time">'+v.created_at.split("+")[0]+'</p></div><div class="iright"><p class="content">'+v.text+'</p></div></div>');
 				$("#say-book").append('<div class="bb-item"><div class="ileft"><img class="pic" src="'+(v.thumbnail_pic ? v.thumbnail_pic : 'images/default/'+Math.floor( ( Math.random() * 4 ) + 1 )+'.jpg')+'"><p class="name">'+v.user.name+'</p> <p class="time">'+v.created_at.split("+")[0]+'</p></div><div class="iright"><p class="content">'+v.text+'</p></div></div>');
 			});
 			var Page = (function() {

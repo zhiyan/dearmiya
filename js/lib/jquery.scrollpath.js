@@ -59,7 +59,7 @@
 				pathList = pathObject.getPath();
 				initCanvas();
 				initScrollBar();
-				scrollToStep( 0 ); // Go to the first step immediately
+				scrollToStep( step || 0 ); // Go to the first step immediately
 				element.css( "position", "relative" );
 
 				$( document ).on({
@@ -148,7 +148,8 @@
 				path.push({ x: xPos,
 							y: yPos,
 							rotate: rotation + rotStep * i,
-							callback: i === steps ? settings.callback : null
+							callback: i === steps ? settings.callback : null,
+							destination: i === steps && settings.name ? true : null
 						});
 			}
 			if( settings.name ) nameMap[ settings.name ] = path.length - 1;
@@ -168,7 +169,8 @@
 				path.push({ x: x,
 							y: y,
 							rotate: settings.rotate !== null ? settings.rotate : rotation,
-							callback: i === steps - 1 ? settings.callback : null
+							callback: i === steps - 1 ? settings.callback : null,
+							destination: i === steps-1 && settings.name ? true : null
 					});
 			}
 			if( settings.name ) nameMap[ settings.name ] = path.length - 1;
@@ -198,7 +200,8 @@
 				path.push({ x: xPos + xStep * i,
 							y: yPos + yStep * i,
 							rotate: rotation + rotStep * i,
-							callback: i === steps ? settings.callback : null
+							callback: i === steps ? settings.callback : null,
+							destination: i === steps && settings.name ? true : null
 						});
 			}
 			if( settings.name ) nameMap[ settings.name ] = path.length - 1;
@@ -238,7 +241,8 @@
 				path.push({ x: centerX + radius * Math.cos( startAngle + radStep*i ),
 							y: centerY + radius * Math.sin( startAngle + radStep*i ),
 							rotate: rotation + rotStep * i,
-							callback: i === steps ? settings.callback : null
+							callback: i === steps ? settings.callback : null,
+							destination: i === steps  && settings.name ? true : null
 						});
 			}
 			if( settings.name ) nameMap[ settings.name ] = path.length - 1;
@@ -285,6 +289,46 @@
 
 		this.getPathOffsetY = function() {
 			return offsetY - PADDING / 2;
+		};
+
+		/*added function*/
+		this.getCurrentStep = function(){
+			return step;
+		};
+
+		// clear path
+		this.clearPath = function(){
+			path = [];
+			canvasPath = [];
+			pathList = [];
+			methods.init.length = 0;
+			rotation = 0;
+			isInitialized = false;
+			$('.sp-scroll-bar').remove();
+			$( document ).unbind({
+				"mousewheel": scrollHandler,
+				"DOMMouseScroll": ("onmousewheel" in document) ? null : scrollHandler, // Firefox
+				"keydown": keyHandler,
+				"mousedown": function( e ) {
+					if( e.button === 1 ) {
+						e.preventDefault();
+						return false;
+					}
+				}
+			});
+			$( window ).unbind( "resize", function() { scrollToStep( step ); } );
+			return this;
+		}
+
+		this.getNameByStep = function( step , needDir ){
+			var name,distance;
+			$.each(nameMap,function( i, v){
+				if( Math.abs( v - step ) <= scrollSpeed ){
+					distance = v - step;
+					name = i;
+				}
+			});
+			return !needDir ? name : [name,distance/Math.abs(distance) || 0];
 		};
 
 		/* Sets the current position */
@@ -489,13 +533,17 @@
 	/* Scrolls to a specified step */
 	function scrollToStep( stepParam, fromAnimation ) {
 		if ( isAnimating && !fromAnimation ) return;
-		var cb;
+		var cb,
+			cbn;
 		if (pathList[ stepParam ] ){
 			cb = pathList[ stepParam ].callback;
+			cbn = pathList[ stepParam ].destination;
 			element.css( makeCSS( pathList[ stepParam ] ) );
 		}
 		if( scrollHandle ) scrollHandle.css( "top", stepParam / (pathList.length - 1 ) * ( scrollBar.height() - scrollHandle.height() ) + "px" );
 		if ( cb && stepParam !== step && !isAnimating ) cb();
+		if( cbn && stepParam !== step && !isAnimating && settings.callback)
+			settings.callback();
 		step = stepParam;
 	}
 
