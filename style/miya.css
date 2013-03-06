@@ -20,6 +20,7 @@ body, button, input, select, textarea { font:12px/1.125 Tahoma, Helvetica, "х╛ош
 body{
 	overflow: hidden;
 	background:url(../images/bg.jpg) repeat;
+	-webkit-font-smoothing:antialiased;
 }
 .x{
 	position: absolute;

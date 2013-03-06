@@ -28,7 +28,15 @@ var miya = {
 			$.fn.scrollPath("scrollTo", target, 1000, "easeInOutSine");
 			return false;
 		});
-		$("nav").delay(1000).animate({"right":0},1500,'easeOutQuart')
+		$("nav").delay(1000).animate({"right":0},1500,'easeOutQuart');
+
+		// fix keyboard bug
+		$win.on("keydown",function(e){
+			var code = e.keyCode;
+			if(code === 40 || code === 37 || code ===39 || code === 38)
+				e.preventDefault();
+		});
+
 		// sky
 		this.initSky();
 
